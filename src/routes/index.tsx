@@ -18,7 +18,7 @@ import {
   Utensils,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 
 import heroImage from "@/assets/zz-restaurant-hero.jpg";
 import burgerImage from "@/assets/zz-burger.jpg";
@@ -683,7 +683,7 @@ function Index() {
     setIsMenuOpen(false);
   };
 
-  const handleCheckoutSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleCheckoutSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (cart.length === 0) {
       return;
@@ -716,7 +716,7 @@ function Index() {
     event.currentTarget.reset();
   };
 
-  const handleReservationSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleReservationSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const name = String(form.get("reservationName") ?? "").trim();
@@ -1215,7 +1215,7 @@ function CartBadge({ count }: { count: number }) {
   );
 }
 
-function SectionKicker({ children }: { children: React.ReactNode }) {
+function SectionKicker({ children }: { children: ReactNode }) {
   return <p className="text-sm font-bold uppercase tracking-[0.24em] text-primary">{children}</p>;
 }
 
@@ -1296,7 +1296,7 @@ function CartSection({
   onUpdateQuantity: (cartId: string, change: number) => void;
   onRemove: (cartId: string) => void;
   onCheckout: () => void;
-  onSubmitCheckout: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmitCheckout: (event: FormEvent<HTMLFormElement>) => void;
 }) {
   return (
     <section id="cart" className="section-shell bg-background">
@@ -1446,7 +1446,7 @@ function Field({ label, name, type = "text", required = false, min }: { label: s
   );
 }
 
-function InfoCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function InfoCard({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
   return (
     <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary/15 text-primary">{icon}</span>
