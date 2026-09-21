@@ -1103,14 +1103,14 @@ function Index() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm text-muted-foreground sm:grid-cols-3 lg:grid-cols-2">
-            {[
+            {([
               ["Home", "home"],
               ["Menu", "menu"],
               ["About", "about"],
               ["Reservations", "reservations"],
               ["Contact", "contact"],
               ["Cart", "cart"],
-            ].map(([label, id]) => (
+            ] as const).map(([label, id]) => (
               <button
                 key={id}
                 type="button"
