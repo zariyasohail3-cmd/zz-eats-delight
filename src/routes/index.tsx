@@ -67,7 +67,7 @@ type CartItem = {
   cartId: string;
   itemId: string;
   name: string;
-  label?: string;
+  label?: string | undefined;
   price: number;
   quantity: number;
   image: string;
@@ -143,7 +143,7 @@ const menuItems: MenuItem[] = [
     description: "Golden crispy chicken nuggets served with fries and dip.",
     category: "🍗 Chicken & Starters",
     prices: [{ amount: 550 }],
-    image: imageByCategory["🍗 Chicken & Starters"],
+    image: bbqImage,
   },
   {
     id: "chicken-strips",
@@ -151,7 +151,7 @@ const menuItems: MenuItem[] = [
     description: "Crispy seasoned chicken strips with special sauce.",
     category: "🍗 Chicken & Starters",
     prices: [{ amount: 600 }],
-    image: imageByCategory["🍗 Chicken & Starters"],
+    image: bbqImage,
   },
   {
     id: "chicken-cheese-balls",
@@ -159,7 +159,7 @@ const menuItems: MenuItem[] = [
     description: "Crispy cheese-filled chicken bites.",
     category: "🍗 Chicken & Starters",
     prices: [{ amount: 650 }],
-    image: imageByCategory["🍗 Chicken & Starters"],
+    image: bbqImage,
   },
   {
     id: "loaded-fries",
@@ -1173,7 +1173,7 @@ function DesktopNav({ onNavigate }: { onNavigate: (id: string) => void }) {
     ["Gallery", "gallery"],
     ["Reservations", "reservations"],
     ["Contact", "contact"],
-  ];
+  ] as const;
   return (
     <>
       {links.map(([label, id]) => (
@@ -1197,7 +1197,7 @@ function MobileNav({ onNavigate, itemCount }: { onNavigate: (id: string) => void
     ["Reservations", "reservations"],
     ["Contact", "contact"],
     ["Cart", "cart"],
-  ];
+  ] as const;
   return links.map(([label, id]) => (
     <Button key={id} type="button" variant="nav" className="justify-start" onClick={() => onNavigate(id)}>
       {id === "cart" && <ShoppingBag />}
