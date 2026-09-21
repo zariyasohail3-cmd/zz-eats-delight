@@ -757,7 +757,7 @@ function Index() {
           </button>
 
           <div className="hidden items-center gap-1 lg:flex">
-            <DesktopNav onNavigate={handleNavClick} />
+            <DesktopNav onNavigate={handleNavClick} itemCount={itemCount} />
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
@@ -1165,7 +1165,7 @@ function Index() {
   );
 }
 
-function DesktopNav({ onNavigate }: { onNavigate: (id: string) => void }) {
+function DesktopNav({ onNavigate, itemCount }: { onNavigate: (id: string) => void; itemCount: number }) {
   const links = [
     ["Home", "home"],
     ["About", "about"],
@@ -1181,8 +1181,16 @@ function DesktopNav({ onNavigate }: { onNavigate: (id: string) => void }) {
           {label}
         </Button>
       ))}
-      <Button type="button" variant="hero" size="sm" onClick={() => onNavigate("cart")} className="relative ml-2">
+      <Button
+        type="button"
+        variant="hero"
+        size="sm"
+        onClick={() => onNavigate("cart")}
+        className="relative ml-2"
+        aria-label={`Open cart with ${itemCount} items`}
+      >
         <ShoppingBag /> Cart
+        {itemCount > 0 && <CartBadge count={itemCount} />}
       </Button>
     </>
   );
